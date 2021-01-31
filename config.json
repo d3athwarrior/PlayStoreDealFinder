@@ -1,0 +1,5 @@
+{
+    "playStoreSitemapURL" : "https://play.google.com/robots.txt",
+    "tempDirectoryLocation" : "./",
+    "serverPort": 3000
+}

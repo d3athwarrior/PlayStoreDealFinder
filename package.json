@@ -1,0 +1,37 @@
+{
+  "name": "playstoredealfinder",
+  "version": "0.0.1",
+  "description": "Simple application that will parse the site map periodically and store the parsed data from the sitemap like Application Name URL etc to later publish deals from time to time.",
+  "main": "index.ts",
+  "scripts": {
+    "tsc": "tsc",
+    "dev": "ts-node-dev --respawn ./src/index.ts",
+    "prod": "tsc && node ./build/index.js",
+    "lint": "eslint ./src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d3athwarrior/PlayStoreDealFinder.git"
+  },
+  "author": "d3athwarrior",
+  "license": "See LICENSE for license information",
+  "bugs": {
+    "url": "https://github.com/d3athwarrior/PlayStoreDealFinder/issues"
+  },
+  "homepage": "https://github.com/d3athwarrior/PlayStoreDealFinder#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "google-play-scraper": "^8.0.2",
+    "mysql": "^2.18.1",
+    "sax-wasm": "^2.0.0",
+    "sequelize": "^6.5.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.11",
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
+    "eslint": "^7.19.0",
+    "ts-node-dev": "^1.1.1",
+    "typescript": "^4.1.3"
+  }
+}
