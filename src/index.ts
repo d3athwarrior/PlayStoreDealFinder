@@ -1,43 +1,16 @@
-import fs from 'fs';
-import path from 'path';
-import { SaxEventType, SAXParser } from 'sax-wasm';
+import { SaxEventType, Text } from "sax-wasm";
+import { SiteMapParser } from "./parser/SiteMapParser";
 
-// Get the path to the WebAssembly binary and load it
-const saxPath = require.resolve('sax-wasm/lib/sax-wasm.wasm');
-const saxWasmBuffer = fs.readFileSync(saxPath);
-
-// Instantiate
-const options = {highWaterMark: 32 * 1024}; // 32k chunks
-const parser = new SAXParser(SaxEventType.Attribute | SaxEventType.OpenTag, options);
-parser.eventHandler = (event, data) => {
-  if (event === SaxEventType.Attribute) {
-    // process attribute
-  } else if (event === SaxEventType.OpenTagStart) {
-    console.log(data);
-  }
-};
-
-// Instantiate and prepare the wasm for parsing
-parser.prepareWasm(saxWasmBuffer).then(ready => {
-  if (ready) {
-    // stream from a file in the current directory
-    const readable = fs.createReadStream(path.resolve(path.resolve('.', '../play_sitemaps_2021-01-30_1612026055-00000-of-54833.xml')), options);
-    readable.on('data', (chunk) => {
-      console.log(chunk);
-      // parser.write
-    });
-    readable.on('end', () => parser.end());
+var parser = new SiteMapParser();
+var fileList = new Array<string>();
+fileList.push("../play_sitemaps_2021-01-30_1612026055-00000-of-54833.xml");
+fileList.push("../play_sitemaps_2021-02-13_1613278844-00104-of-55048.xml");
+parser.setHandlerFunction((event: any, data: any) => {
+  if (event === SaxEventType.Text) {
+    var textData: Text = (data as unknown) as Text;
+    if (textData.value?.indexOf("apps") != -1 && textData.value.indexOf("http") != -1) {
+      console.log(textData.value);
+    }
   }
 });
-/* import Express = require("express");
-
-const config = require("../config.json");
-const expressApp = (Express.application = Express());
-
-expressApp.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
-expressApp.listen(config.serverPort, () => {
-  console.log("Example app listening on port 3000!");
-}); */
+parser.addFileListToProcessing(fileList);
