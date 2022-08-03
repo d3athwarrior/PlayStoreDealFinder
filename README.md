@@ -1,4 +1,7 @@
-# PlayStoreDealFinder
+# Abandoned
+Too much effort for something that has little to no incentive for me.
+
+<s># PlayStoreDealFinder
 
 A simple application built using TypeScript on NodeJS that will fetch the sitemap using the robots.txt from Google PlayStore and then one by one scrape the URL of the applications and then store the price information on them
 
@@ -19,4 +22,4 @@ A simple application built using TypeScript on NodeJS that will fetch the sitema
 2. <https://github.com/facundoolano/google-play-api>
 3. <https://github.com/facundoolano/google-play-scraper>
 4. <https://github.com/JoMingyu/google-play-scraper>
-5. <https://pypi.org/project/google-play-scraper/>
+5. <https://pypi.org/project/google-play-scraper/></s>
